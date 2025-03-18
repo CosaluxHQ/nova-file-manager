@@ -29,15 +29,9 @@ return [
     */
     'available_disks' => [
         'public',
-        // 's3',
+        's3',
         // 'ftp',
         // ... more disks
-    ],
-
-    'paginate_options' => [
-        'pagination_start' => (int) env('NOVA_FILE_MANAGER_PAGINATE_START', 10),
-        'pagination_end' => (int) env('NOVA_FILE_MANAGER_PAGINATE_END', 50),
-        'pagination_step' => (int) env('NOVA_FILE_MANAGER_PAGINATE_STEP', 10),
     ],
 
     /*

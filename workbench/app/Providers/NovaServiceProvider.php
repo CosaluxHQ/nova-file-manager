@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Workbench\App\Providers;
 
 use Illuminate\Support\Facades\Gate;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Oneduo\NovaFileManager\FileManager;
@@ -69,7 +70,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            NovaFileManager::make(),
+            NovaFileManager::make()->pagination(function (NovaRequest $request) {
+                return [10, 42, 84];
+            }),
         ];
     }
 
@@ -95,6 +98,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
+        parent::register();
+
         FileManager::registerWrapper('repeater', function (FileManager $field) {
             return $field
                 // some options
